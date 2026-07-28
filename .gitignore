@@ -1,3 +1,10 @@
+# Python
 .venv
+__pycache__/
 
+# Build
+dist/
+build/
+
+# Editor
 .vscode

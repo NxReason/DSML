@@ -7,6 +7,7 @@ members = [
     "dsml",
     "hello-world",
     "nxmath",
+    "nxpillow",
     "plot",
     "plotter",
 ]
@@ -93,12 +94,14 @@ source = { virtual = "." }
 dependencies = [
     { name = "matplotlib" },
     { name = "numpy" },
+    { name = "pillow" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "matplotlib", specifier = ">=3.11.1" },
     { name = "numpy", specifier = ">=2.5.1" },
+    { name = "pillow", specifier = ">=12.3.0" },
 ]
 
 [[package]]
@@ -352,6 +355,17 @@ wheels = [
 name = "nxmath"
 version = "0.1.0"
 source = { editable = "libs/nxmath" }
+
+[[package]]
+name = "nxpillow"
+version = "0.1.0"
+source = { virtual = "apps/nxpillow" }
+dependencies = [
+    { name = "pillow" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "pillow" }]
 
 [[package]]
 name = "packaging"

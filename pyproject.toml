@@ -7,6 +7,7 @@ requires-python = ">=3.12"
 dependencies = [
     "matplotlib>=3.11.1",
     "numpy>=2.5.1",
+    "pillow>=12.3.0",
 ]
 
 [tool.uv.workspace]
@@ -17,4 +18,5 @@ members = [
     "apps/plot",
     "apps/nump",
     "apps/panda",
+    "apps/nxpillow",
 ]
