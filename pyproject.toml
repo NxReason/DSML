@@ -1,0 +1,20 @@
+[project]
+name = "dsml"
+version = "0.1.0"
+description = "Data Science & Machine Learning Sandbox"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "matplotlib>=3.11.1",
+    "numpy>=2.5.1",
+]
+
+[tool.uv.workspace]
+members = [
+    "apps/hello_world",
+    "libs/nxmath",
+    "libs/plotter",
+    "apps/plot",
+    "apps/nump",
+    "apps/panda",
+]

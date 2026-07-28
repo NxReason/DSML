@@ -1,0 +1,13 @@
+[project]
+name = "plot"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "matplotlib",
+  "plotter"
+]
+
+[tool.uv.sources]
+plotter = { workspace = true }
