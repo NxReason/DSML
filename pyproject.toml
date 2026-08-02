@@ -12,11 +12,11 @@ dependencies = [
 
 [tool.uv.workspace]
 members = [
-    "apps/hello_world",
     "libs/nxmath",
     "libs/plotter",
     "apps/plot",
-    "apps/nump",
-    "apps/panda",
     "apps/nxpillow",
+    "apps/nxnumpy",
+    "apps/sandbox",
+    "libs/nxcli",
 ]

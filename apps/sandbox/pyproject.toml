@@ -1,11 +1,10 @@
 [project]
-name = "hello-world"
+name = "sandbox"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = ["nxmath", "plotter"]
+dependencies = ["nxcli"]
 
 [tool.uv.sources]
-nxmath = { workspace = true }
-plotter = { workspace = true }
+nxcli = { workspace = true }
