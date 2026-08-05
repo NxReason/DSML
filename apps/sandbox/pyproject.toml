@@ -4,7 +4,8 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = ["nxcli"]
+dependencies = ["nxmath", "plotter"]
 
 [tool.uv.sources]
-nxcli = { workspace = true }
+nxmath = { workspace = true }
+plotter = { workspace = true }

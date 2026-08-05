@@ -14,9 +14,9 @@ dependencies = [
 members = [
     "libs/nxmath",
     "libs/plotter",
+    "libs/nxcli",
     "apps/plot",
     "apps/nxpillow",
-    "apps/nxnumpy",
     "apps/sandbox",
-    "libs/nxcli",
+    "apps/jpparser",
 ]

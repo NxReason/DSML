@@ -5,7 +5,7 @@ authors = [
     { name = "NxReason", email = "arsiddde@gmail.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = ["cycler"]
 
 [build-system]
 requires = ["uv_build>=0.11.31,<0.12.0"]

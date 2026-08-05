@@ -1,0 +1,10 @@
+[project]
+name = "jpparser"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "sudachidict-core>=20260723",
+    "sudachidict-full>=20260723",
+    "sudachipy>=0.6.11",
+]
