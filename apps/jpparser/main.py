@@ -1,3 +1,4 @@
+import translator
 from tokens import get_tokens_file
 from parser import Parser
 from out import save, save_tokens
@@ -22,17 +23,29 @@ from out import save, save_tokens
 
 # ignore list
 
+# separate kanji parser / translator
+
 
 def main():
-    filename = 'mid.txt'
+    translator.load_dict()
+    print('dict loaded')
+
+    filename = 'tiny.txt'
 
     tokens = get_tokens_file('./texts/' + filename)
+    print('tokenized')
 
-    analyzer = Parser(tokens)
-    analyzer.parse_core_words()
+    parser = Parser(tokens)
+    parser.parse_core_words()
+    print('parsed')
 
-    save(analyzer, {'output': filename})
-    save_tokens(tokens, f'{filename}-tokens.txt')
+    for word in parser.core_words.keys():
+        print(word)
+        print(translator.lookup(word))
+        print('-' * 20)
+
+    # save(analyzer, {'output': filename})
+    # save_tokens(tokens, f'{filename}-tokens.txt')
 
 
 if __name__ == "__main__":
