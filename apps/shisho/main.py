@@ -1,5 +1,4 @@
-from data_store import read_translations, read_words_file, load_jmdict
-import translator
+from translator import lookup
 from tokens import get_tokens_file
 from parser import Parser
 from out import save, save_tokens
@@ -28,8 +27,6 @@ from out import save, save_tokens
 
 
 def run():
-    translator.load_dict()
-    print('dict loaded')
 
     filename = 'tiny.txt'
 
@@ -42,7 +39,6 @@ def run():
 
     for word in parser.core_words.keys():
         print(word)
-        print(translator.lookup(word))
         print('-' * 20)
 
     # save(analyzer, {'output': filename})
@@ -50,11 +46,8 @@ def run():
 
 
 def main():
-    expressions, *_ = read_translations()
-    word = '力'
-    for id, exp in expressions:
-        if exp == word:
-            print('found')
+    id = lookup('力')
+    print(id)
 
 
 if __name__ == "__main__":
