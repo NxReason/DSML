@@ -18,5 +18,5 @@ members = [
     "apps/plot",
     "apps/nxpillow",
     "apps/sandbox",
-    "apps/jpparser",
+    "apps/shisho",
 ]

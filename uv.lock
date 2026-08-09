@@ -477,10 +477,14 @@ version = "0.1.0"
 source = { editable = "libs/plotter" }
 dependencies = [
     { name = "cycler" },
+    { name = "matplotlib" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "cycler" }]
+requires-dist = [
+    { name = "cycler", specifier = ">=0.12.1" },
+    { name = "matplotlib", specifier = ">=3.11.1" },
+]
 
 [[package]]
 name = "pyparsing"
