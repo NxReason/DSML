@@ -1,3 +1,4 @@
+from data_store import read_translations, read_words_file, load_jmdict
 import translator
 from tokens import get_tokens_file
 from parser import Parser
@@ -26,7 +27,7 @@ from out import save, save_tokens
 # separate kanji parser / translator
 
 
-def main():
+def run():
     translator.load_dict()
     print('dict loaded')
 
@@ -46,6 +47,14 @@ def main():
 
     # save(analyzer, {'output': filename})
     # save_tokens(tokens, f'{filename}-tokens.txt')
+
+
+def main():
+    expressions, *_ = read_translations()
+    word = '力'
+    for id, exp in expressions:
+        if exp == word:
+            print('found')
 
 
 if __name__ == "__main__":
