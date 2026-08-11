@@ -1,1 +1,2 @@
-from .vector import Vector, add
+from .vector import *
+from .stats import *

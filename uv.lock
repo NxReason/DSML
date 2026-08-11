@@ -495,12 +495,14 @@ name = "sandbox"
 version = "0.1.0"
 source = { virtual = "apps/sandbox" }
 dependencies = [
+    { name = "numpy" },
     { name = "nxmath" },
     { name = "plotter" },
 ]
 
 [package.metadata]
 requires-dist = [
+    { name = "numpy" },
     { name = "nxmath", editable = "libs/nxmath" },
     { name = "plotter", editable = "libs/plotter" },
 ]
