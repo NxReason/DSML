@@ -115,6 +115,37 @@ def interval_mean(data):
     return value_total / entry_count if entry_count != 0 else None
 
 
+# spread
+def std_dev(data, is_sample=False):
+    return math.sqrt(variance(data, is_sample))
+
+
+def interval_std_dev(data):
+    inter_mean = interval_mean(data)
+    value_total = 0
+    entry_count = 0
+    for inter, freq in data.items():
+        mid = (inter[0] + inter[1]) / 2
+        sq = math.pow(inter_mean - mid, 2)
+        value_total += sq * freq
+        entry_count += freq
+    return math.sqrt(value_total / (entry_count - 1))
+
+
+def z_score(data, value, is_sample=False):
+    sd = std_dev(data, is_sample=is_sample)
+    m = mean(data)
+    return (value - m) / sd
+
+
+# variance = average of squares of the deviations
+def variance(data, is_sample=False):
+    x = 1 if is_sample else 0
+    dm = mean(data)
+    squares = [math.pow(dm - val, 2) for val in data]
+    return sum(squares) / (len(data) - x)
+
+
 # data transformations
 def build_stem_table(values, div=10):
     stems = {}
@@ -138,3 +169,13 @@ def show_stem_table(stem_table):
 def rel_frequency(data):
     total = sum(data)
     return [x / total for x in data]
+
+
+def cumulative_total(data):
+    out = {}
+    rf = rel_frequency(data.values())
+    total = 0
+    for i, (key, value) in enumerate(data.items()):
+        total += rf[i]
+        out[key] = total
+    return out
