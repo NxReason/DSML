@@ -1,0 +1,87 @@
+--- Standard deviations for PC, PS3, X360, DS ---
+PC                  : 1.5289693123266956
+PS3                 : 1.460389573777717
+X360                : 1.440586022033868
+DS                  : 1.5068014281375994
+
+--- Quartiles for PC, PS3, X360, DS ---
+PC                  : ((6.2, 7.5, 8.2), 1.9999999999999991)
+PS3                 : ((6.0, 7.1, 7.8), 1.7999999999999998)
+X360                : ((5.9, 7.0, 7.8), 1.8999999999999995)
+DS                  : ((6.45, 7.4, 8.0), 1.5499999999999998)
+
+--- Best games on PC ---
+The Witcher 3: Wild : 9.3
+The Orange Box      : 9.3
+Deus Ex             : 9.3
+Planescape: Torment : 9.2
+Left 4 Dead         : 9.2
+Half-Life           : 9.1
+Half-Life 2         : 9.1
+Diablo II: Lord of D: 9.1
+Warcraft III: Reign : 9.1
+Rome: Total War     : 9.1
+
+--- Best games on PS3 ---
+The Last of Us      : 9.1
+Metal Gear Solid: Th: 9
+Batman: Arkham Asylu: 8.9
+Demon's Souls       : 8.9
+Port Royale 3       : 8.9
+Uncharted 2: Among T: 8.8
+Red Dead Redemption : 8.8
+Dead Space          : 8.8
+Hot Shots Golf: Out : 8.8
+Devil May Cry HD Col: 8.8
+
+--- Best games on X360 ---
+Red Dead Redemption : 9
+Cabela's North Ameri: 9
+Mass Effect 2       : 8.9
+BioShock            : 8.9
+The Orange Box      : 8.9
+Birds of Steel      : 8.9
+Assassin's Creed II : 8.8
+Fight Night Round 3 : 8.8
+Dance Dance Revoluti: 8.8
+Zone of the Enders H: 8.8
+
+--- Ratings for PC, PS3, X360, DS ---
+PC                  : avg [7.06] / median [7.50] / mode [8.20] / tbd [  49] / empty [ 155]
+PS3                 : avg [6.73] / median [7.10] / mode [7.50] / tbd [  87] / empty [ 367]
+X360                : avg [6.68] / median [7.00] / mode [7.80] / tbd [  84] / empty [ 212]
+DS                  : avg [7.03] / median [7.40] / mode [7.00] / tbd [ 757] / empty [ 879]
+
+--- Counts ---
+PS2                 : 2161
+DS                  : 2152
+PS3                 : 1331
+Wii                 : 1320
+X360                : 1262
+PSP                 : 1209
+PS                  : 1197
+PC                  : 974
+XB                  : 824
+GBA                 : 822
+GC                  : 556
+3DS                 : 520
+PSV                 : 432
+PS4                 : 393
+N64                 : 319
+XOne                : 247
+SNES                : 239
+SAT                 : 173
+WiiU                : 147
+2600                : 133
+NES                 : 98
+GB                  : 98
+DC                  : 52
+GEN                 : 29
+NG                  : 12
+SCD                 : 6
+WS                  : 6
+3DO                 : 3
+TG16                : 2
+GG                  : 1
+PCFX                : 1
+

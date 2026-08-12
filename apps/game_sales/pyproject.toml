@@ -1,0 +1,13 @@
+[project]
+name = "game-sales"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "nxmath",
+    "pandas>=3.0.5",
+]
+
+[tool.uv.sources]
+nxmath = { workspace = true }
