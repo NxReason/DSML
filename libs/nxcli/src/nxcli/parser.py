@@ -1,12 +1,22 @@
 from .Args import Args
+from sys import argv
 
 
-def parse_args(args: list[str], desc: dict, out={}):
-    args = args[1:]
+def parse_args(desc: dict = {}):
+    args = argv[1:]
     res = Args()
+
+    if len(args) == 0:
+        return res
 
     args_idx = [i for (i, a) in enumerate(args) if a.startswith('-')]
 
+    # return all args as inputs if no "-args"
+    if len(args_idx) == 0:
+        res.inputs = args
+        return res
+
+    # split "-args" from regular inputs
     if 0 in args_idx:
         res.inputs = args[args_idx[-1] + 2:]
     else:

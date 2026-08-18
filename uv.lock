@@ -582,6 +582,7 @@ name = "shisho"
 version = "0.1.0"
 source = { virtual = "apps/shisho" }
 dependencies = [
+    { name = "nxcli" },
     { name = "sudachidict-core" },
     { name = "sudachidict-full" },
     { name = "sudachipy" },
@@ -589,6 +590,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "nxcli", editable = "libs/nxcli" },
     { name = "sudachidict-core", specifier = ">=20260723" },
     { name = "sudachidict-full", specifier = ">=20260723" },
     { name = "sudachipy", specifier = ">=0.6.11" },

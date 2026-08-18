@@ -1,12 +1,4 @@
-import matplotlib.pyplot as plt
-from matplotlib.ticker import MaxNLocator
-
 import nxmath
-import plotter
-import numpy as np
-
-from collections import Counter
-import math
 
 
 def main():

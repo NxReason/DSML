@@ -23,6 +23,16 @@ def read_translations():
     return expressions, readings, definitions, examples
 
 
+def read_ignore_list():
+    conn, cursor = create_ignore_db()
+
+    cursor.execute("SELECT * FROM ignore_words")
+    words = cursor.fetchall()
+    conn.close()
+
+    return words
+
+
 def load_jmdict():
     conn, cursor = create_db()
     create_words_table(conn, cursor)
@@ -234,3 +244,41 @@ def create_words_table(conn, cursor):
         )
     """)
     conn.commit()
+
+
+# Ignore list DB
+def create_ignore_db():
+    conn = sqlite3.connect("ignore_list.db")
+    cursor = conn.cursor()
+    conn.commit()
+
+    return conn, cursor
+
+
+def create_ignore_table(conn, cursor):
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS ignore_words (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            word TEXT NOT NULL UNIQUE
+        )
+    """)
+    conn.commit()
+
+
+def save_ignore_words(words):
+    conn, cursor = create_ignore_db()
+    _save_ignore_words(conn, cursor, words)
+
+
+def _save_ignore_words(conn, cursor, words):
+    for w in words:
+        _save_ignore_word(conn, cursor, w)
+
+
+def _save_ignore_word(conn, cursor, word):
+    try:
+        cursor.execute("INSERT INTO ignore_words (word) VALUES (?)", (word,))
+        conn.commit()
+    except sqlite3.IntegrityError as e:
+        print(f'Failed to save the word: {word}')
+        print('SQL Error:', e.sqlite_errorname)

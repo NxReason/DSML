@@ -1,9 +1,4 @@
-import csv
-
-from df import DataFrame
-import plat
-
-import nxmath
+import sales
 
 # 0 Name
 # 1 Platform
@@ -24,14 +19,7 @@ import nxmath
 
 
 def main():
-    with open('./data/sales.csv', mode='r', encoding='utf-8') as f:
-        reader = csv.reader(f)
-
-        df = DataFrame(next(reader))
-        for row in reader:
-            df.data.append(row)
-
-        plat.overview(df)
+    sales.read()
 
 
 if __name__ == "__main__":

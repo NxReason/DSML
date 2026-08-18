@@ -7,4 +7,8 @@ dependencies = [
     "sudachidict-core>=20260723",
     "sudachidict-full>=20260723",
     "sudachipy>=0.6.11",
+    "nxcli",
 ]
+
+[tool.uv.sources]
+nxcli = { workspace = true }

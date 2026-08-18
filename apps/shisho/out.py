@@ -1,6 +1,10 @@
 from translation_table import translate_pos
 
 
+def save_core_words_list(words: list[str]):
+    save_file('core_words.txt', [f'{w}\n' for w in words])
+
+
 def save_tokens(tokens, filename):
     lines = []
     for t in tokens:

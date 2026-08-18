@@ -1,7 +1,8 @@
-from translator import lookup
 from tokens import get_tokens_file
 from parser import Parser
-from out import save, save_tokens
+from nxcli import parse_args
+from data_store import read_ignore_list
+from out import save_core_words_list
 
 # input:
 # single / multiple files
@@ -27,27 +28,28 @@ from out import save, save_tokens
 
 
 def run():
+    args = parse_args()
 
-    filename = 'tiny.txt'
+    if len(args.inputs) == 0:
+        print('Error: Specify inputs to parse')
+        exit()
+
+    filename = args.inputs[0]
 
     tokens = get_tokens_file('./texts/' + filename)
-    print('tokenized')
 
     parser = Parser(tokens)
     parser.parse_core_words()
-    print('parsed')
 
-    for word in parser.core_words.keys():
-        print(word)
-        print('-' * 20)
+    core_words = set(parser.core_words.keys())
+    ignore_words = set(iw[1] for iw in read_ignore_list())
 
-    # save(analyzer, {'output': filename})
-    # save_tokens(tokens, f'{filename}-tokens.txt')
+    new_words = core_words - ignore_words
+    save_core_words_list(list(new_words))
 
 
 def main():
-    id = lookup('力')
-    print(id)
+    run()
 
 
 if __name__ == "__main__":
