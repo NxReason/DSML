@@ -3,6 +3,7 @@ from parser import Parser
 from nxcli import parse_args
 from data_store import read_ignore_list
 from out import save_core_words_list
+from subs import clean_subs
 
 # input:
 # single / multiple files
