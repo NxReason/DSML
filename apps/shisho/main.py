@@ -27,6 +27,8 @@ from subs import clean_subs
 
 # separate kanji parser / translator
 
+from functools import reduce
+
 
 def run():
     args = parse_args()
@@ -46,6 +48,7 @@ def run():
     ignore_words = set(iw[1] for iw in read_ignore_list())
 
     new_words = core_words - ignore_words
+
     save_core_words_list(list(new_words))
 
 

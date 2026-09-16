@@ -1,11 +1,10 @@
 import nxmath
+import math
+from functools import reduce
 
 
 def main():
-    values = [4, 8, 15, 16, 23, 42]
-    print(nxmath.mean(values))
-    print(nxmath.std_dev(values))
-    print(nxmath.z_score(values, 30))
+    print(nxmath.geom_pmf(7, 0.02))
 
 
 if __name__ == "__main__":
