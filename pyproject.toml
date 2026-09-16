@@ -20,4 +20,5 @@ members = [
     "apps/sandbox",
     "apps/shisho",
     "apps/game_sales",
+    "libs/nxorm",
 ]

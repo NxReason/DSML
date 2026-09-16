@@ -2,10 +2,10 @@
 name = "sandbox"
 version = "0.1.0"
 description = "Add your description here"
-readme = "README.md"
 requires-python = ">=3.12"
-dependencies = ["nxmath", "plotter", "numpy"]
+dependencies = ["nxmath", "plotter", "numpy", "nxorm"]
 
 [tool.uv.sources]
 nxmath = { workspace = true }
+nxorm = { workspace = true }
 plotter = { workspace = true }

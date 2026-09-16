@@ -1,9 +1,10 @@
 import sqlite3
+from pathlib import Path
 from .model import Model
 
 
 class DB:
-    def __init__(self, name: str, models: list[Model]):
+    def __init__(self, name: str | Path, models: list[Model]):
         self.name = name
         self.models = models
 

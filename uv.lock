@@ -16,6 +16,7 @@ members = [
     "game-sales",
     "nxcli",
     "nxmath",
+    "nxorm",
     "nxpillow",
     "plot",
     "plotter",
@@ -373,6 +374,11 @@ version = "0.1.0"
 source = { editable = "libs/nxmath" }
 
 [[package]]
+name = "nxorm"
+version = "0.1.0"
+source = { editable = "libs/nxorm" }
+
+[[package]]
 name = "nxpillow"
 version = "0.1.0"
 source = { virtual = "apps/nxpillow" }
@@ -567,6 +573,7 @@ source = { virtual = "apps/sandbox" }
 dependencies = [
     { name = "numpy" },
     { name = "nxmath" },
+    { name = "nxorm" },
     { name = "plotter" },
 ]
 
@@ -574,6 +581,7 @@ dependencies = [
 requires-dist = [
     { name = "numpy" },
     { name = "nxmath", editable = "libs/nxmath" },
+    { name = "nxorm", editable = "libs/nxorm" },
     { name = "plotter", editable = "libs/plotter" },
 ]
 
@@ -583,6 +591,7 @@ version = "0.1.0"
 source = { virtual = "apps/shisho" }
 dependencies = [
     { name = "nxcli" },
+    { name = "nxorm" },
     { name = "sudachidict-core" },
     { name = "sudachidict-full" },
     { name = "sudachipy" },
@@ -591,6 +600,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "nxcli", editable = "libs/nxcli" },
+    { name = "nxorm", editable = "libs/nxorm" },
     { name = "sudachidict-core", specifier = ">=20260723" },
     { name = "sudachidict-full", specifier = ">=20260723" },
     { name = "sudachipy", specifier = ">=0.6.11" },

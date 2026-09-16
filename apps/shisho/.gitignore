@@ -1,3 +1,6 @@
 # re-download .zips if needed
 /jmdict
 /kanjidic
+/dicts
+/texts
+/words

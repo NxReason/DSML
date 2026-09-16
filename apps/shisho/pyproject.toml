@@ -8,7 +8,9 @@ dependencies = [
     "sudachidict-full>=20260723",
     "sudachipy>=0.6.11",
     "nxcli",
+    "nxorm"
 ]
 
 [tool.uv.sources]
 nxcli = { workspace = true }
+nxorm = { workspace = true }
