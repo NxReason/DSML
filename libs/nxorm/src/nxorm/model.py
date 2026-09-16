@@ -1,34 +1,6 @@
 import builtins
 
 
-class Column:
-    def __init__(self, t: type, primary: bool = False, required: bool = False, unique: bool = False, default=None):
-        self.t = t
-        self.primary = primary
-        self.required = required
-        self.unique = unique
-        self.default = default
-
-    def __str__(self):
-        return f'Column(t={self.t}, primary={self.primary}, required={self.required}, unique={self.unique}, default={self.default})'
-
-    def props_str(self) -> str:
-        out = ''
-        if self.primary:
-            out += " PRIMARY KEY AUTOINCREMENT,"
-            return out
-
-        if self.required:
-            out += " NOT NULL"
-
-        if self.unique:
-            out += " UNIQUE"
-
-        out += ",\n"
-
-        return out
-
-
 class Model:
     table_name = ''
 
@@ -39,7 +11,7 @@ class Model:
 
         self.columns = {}
         for n, t in self.__annotations__.items():
-            if t != Column:
+            if t != Column and t != Relation:
                 continue
             self.columns[n] = self.__getattribute__(n)
 
@@ -105,11 +77,13 @@ class Model:
         values.append(id)
 
         cursor.execute(query, values)
+        self.conn.commit()
 
     def delete(self, id):
         cursor = self.conn.cursor()
         query = f'DELETE FROM {self._name} WHERE id = ?'
         cursor.execute(query, [id])
+        self.conn.commit()
 
     def _get_columns_str(self):
         out = ', '.join(
@@ -132,3 +106,47 @@ def map_sql_type(t: type) -> str:
             return 'REAL'
         case _:
             return 'TEXT'
+
+
+class Column:
+    def __init__(self, t: type, primary: bool = False, required: bool = False, unique: bool = False, default=None):
+        self.t = t
+        self.primary = primary
+        self.required = required
+        self.unique = unique
+        self.default = default
+
+    def __str__(self):
+        return f'Column(t={self.t}, primary={self.primary}, required={self.required}, unique={self.unique}, default={self.default})'
+
+    def props_str(self) -> str:
+        out = ''
+        if self.primary:
+            out += " PRIMARY KEY AUTOINCREMENT,\n"
+            return out
+
+        if self.required:
+            out += " NOT NULL"
+
+        if self.unique:
+            out += " UNIQUE"
+
+        out += ",\n"
+
+        return out
+
+
+class Relation:
+    def __init__(self, on: str):
+        self.on = on
+        self.t = int
+        self.primary = False
+        self.required = False
+        self.unique = False
+        self.default = None
+
+    def __str__(self):
+        return f'Relation(on={self.on})'
+
+    def props_str(self) -> str:
+        return f' REFERENCES {self.on}(id),\n'

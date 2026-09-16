@@ -23,3 +23,8 @@ class DB:
     def share_conn(self, models: list[Model]):
         for m in models:
             m.set_conn(self.conn)
+
+    def raw(self, query, values=[]):
+        cursor = self.conn.cursor()
+        cursor.execute(query, values)
+        return cursor.fetchall()
