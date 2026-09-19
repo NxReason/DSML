@@ -1,4 +1,4 @@
-from apps.shisho.src.translation_table import Pos, Major, Sub
+from src.translation_table import Pos, Major, Sub
 
 
 class Parser:

@@ -1,19 +1,13 @@
 from sudachipy import Dictionary, SplitMode
 from pathlib import Path
-from apps.shisho.src.subs import clean_subs
+from src.subs import clean_subs
 
 
-def get_tokens_file(filename):
-    filepath = Path(filename)
-    # check if file is valid
-    if not filepath.exists():
-        print(f'File {filename} does not exist')
-        return []
-
+def tokenize_file(path: Path):
     tokens = []
-    with open(filename, 'r', encoding='utf-8') as f:
+    with open(path, 'r', encoding='utf-8') as f:
         # check file type and process if necessary
-        if filepath.suffix == '.srt':
+        if path.suffix == '.srt':
             lines = clean_subs(f)
         else:
             lines = f.readlines()
