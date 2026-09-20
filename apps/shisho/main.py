@@ -29,8 +29,14 @@ def main():
     for path, tokens in tokens_dict.items():
         parser = Parser(tokens)
         parser.parse_core_words()
-        print(len(ignore_words))
+
+        core_words = parser.core_words.keys()
         out_words = parser.core_words.keys() - ignore_words
+        diff_count = len(core_words) - len(out_words)
+
+        print(path)
+        print(
+            f'Total core words: {len(core_words)}, ignored: {diff_count}, out: {len(out_words)}')
         file.save_core_words(path, out_words)
 
 
