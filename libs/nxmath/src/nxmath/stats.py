@@ -74,6 +74,19 @@ def percentile_of_value(data, value):
     )
 
 
+def percentile_linear(data, perc):
+    d_sorted = sorted(data)
+    pos = perc * (len(d_sorted) - 1)
+
+    low, high = math.floor(pos), math.ceil(pos)
+
+    if low == high:
+        return d_sorted[low]
+
+    fraction = pos - low
+    return d_sorted[low] + fraction * (d_sorted[high] - d_sorted[low])
+
+
 def quartiles(data):
     d_sorted = sorted(data)
     second = median(d_sorted)
@@ -85,6 +98,14 @@ def quartiles(data):
     third = median(d_sorted[upper:])
 
     return first, second, third
+
+
+def quartiles_linear(data):
+    return (
+        percentile_linear(data, 0.25),
+        percentile_linear(data, 0.50),
+        percentile_linear(data, 0.75),
+    )
 
 
 def iqr(data):
@@ -144,6 +165,23 @@ def variance(data, is_sample=False):
     dm = mean(data)
     squares = [math.pow(dm - val, 2) for val in data]
     return sum(squares) / (len(data) - x)
+
+
+# outliers
+def iqr_outliers(data) -> list[bool]:
+    (q1, _, q3) = quartiles_linear(data)
+    iqr = q3 - q1
+    lower_bound = q1 - 1.5 * iqr
+    upper_bound = q3 + 1.5 * iqr
+    return [val < lower_bound or val > upper_bound for val in data]
+
+
+def std_outliers(data, z_score_limit: float = 3) -> list[bool]:
+    sd = std_dev(data)
+    if sd == 0:
+        return [False] * len(data)
+    m = mean(data)
+    return [abs((val - m) / sd) > z_score_limit for val in data]
 
 
 # data transformations

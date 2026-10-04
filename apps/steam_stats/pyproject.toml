@@ -1,0 +1,14 @@
+[project]
+name = "steam-stats"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas>=3.0.5",
+    "nxmath",
+    "pyarrow>=25.0.1",
+]
+
+[tool.uv.sources]
+nxmath = { workspace = true }

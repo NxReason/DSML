@@ -21,4 +21,5 @@ members = [
     "apps/shisho",
     "apps/game_sales",
     "libs/nxorm",
+    "apps/steam_stats",
 ]
