@@ -12,6 +12,53 @@ DF = pd.DataFrame
 
 
 # Descriptive statistics
+def col_zeroes(df: DF, col: str):
+    values = df[col]
+    zero_count = (values == 0).sum()
+    total = values.count()
+    print(
+        f'{col}: Zeros={zero_count} / Total={total} [{(zero_count / total) * 100:.4f}%]')
+
+
+def skew_of(df: DF, genre: str):
+    games = df[df['Genre'] == genre]
+    result = []
+    for col in ['Price', 'User score', 'Peak CCU', 'Average playtime forever']:
+        result.append(skew_column(games, col))
+    return DF(result)
+
+
+def skew_column(df: DF, col: str):
+    values = df[col]
+    values = values[values > 0]
+    (skew, mean, median) = get_skew_metrics(values.tolist())
+
+    outlier_mask = np.array(nxmath.iqr_outliers(values))
+    no_out = values[~outlier_mask]
+    (skew_no, mean_no, median_no) = get_skew_metrics(no_out.tolist())
+
+    return {
+        'Column': col,
+        'Skew': skew,
+        'Mean': mean,
+        'Median': median,
+        'Mean - Median': mean - median,
+        'Skew (no out)': skew_no,
+        'Mean (no out)': mean_no,
+        'Median (no out)': median_no,
+        'Mean - Median (no out)': mean_no - median_no,
+        'Skew (Pandas)': values.skew(),
+        'Skew (Pandas, no out)': no_out.skew()
+    }
+
+
+def get_skew_metrics(values):
+    skew = nxmath.skewness(values)
+    mean = nxmath.mean(values) or 0
+    median = nxmath.median(values) or 0
+    return (skew, mean, median)
+
+
 def prices_std(df: DF):
     results = []
     for genre, group in df.groupby('Genre'):

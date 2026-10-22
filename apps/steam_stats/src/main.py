@@ -18,7 +18,11 @@ def read_genre_df():
 
 def main():
     df = read_genre_df()
-    genre.prices_compare_outliers(df, 'RPG')
+    rpg = genre.of(df, 'RPG')
+    genre.col_zeroes(rpg, 'Price')
+    genre.col_zeroes(rpg, 'User score')
+    genre.col_zeroes(rpg, 'Peak CCU')
+    genre.col_zeroes(rpg, 'Average playtime forever')
 
 
 def print_all(df):

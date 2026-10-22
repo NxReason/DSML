@@ -167,7 +167,7 @@ def variance(data, is_sample=False):
     return sum(squares) / (len(data) - x)
 
 
-# outliers
+# outliers / skew
 def iqr_outliers(data) -> list[bool]:
     (q1, _, q3) = quartiles_linear(data)
     iqr = q3 - q1
@@ -182,6 +182,14 @@ def std_outliers(data, z_score_limit: float = 3) -> list[bool]:
         return [False] * len(data)
     m = mean(data)
     return [abs((val - m) / sd) > z_score_limit for val in data]
+
+
+def skewness(data):
+    sd = std_dev(data)
+    m = mean(data)
+    if sd == 0:
+        return 0
+    return mean([((val - m) / sd) ** 3 for val in data])
 
 
 # data transformations

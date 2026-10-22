@@ -14,6 +14,7 @@ resolution-markers = [
 members = [
     "dsml",
     "game-sales",
+    "game-sim",
     "nxcli",
     "nxmath",
     "nxorm",
@@ -172,6 +173,17 @@ requires-dist = [
     { name = "nxmath", editable = "libs/nxmath" },
     { name = "pandas", specifier = ">=3.0.5" },
 ]
+
+[[package]]
+name = "game-sim"
+version = "0.1.0"
+source = { virtual = "apps/game_sim" }
+dependencies = [
+    { name = "nxmath" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "nxmath", editable = "libs/nxmath" }]
 
 [[package]]
 name = "kiwisolver"

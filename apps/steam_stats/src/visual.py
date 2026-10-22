@@ -13,6 +13,16 @@ def prices_boxplot(data, genre: str):
     plt.show()
 
 
+# Histograms
+def genre_hist(data, genre: str, col: str):
+    data = data[data > 0]
+    plt.hist(data, bins=20)
+    plt.xlabel(col)
+    plt.ylabel('Number of games')
+    plt.title(f'{genre} game {col}')
+    plt.show()
+
+
 def price_hist_range(data, genre: str, low: float, high: float):
     fit = data[(data >= low) & (data <= high)]
     price_hist(fit, genre)

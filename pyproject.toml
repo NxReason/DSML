@@ -22,4 +22,5 @@ members = [
     "apps/game_sales",
     "libs/nxorm",
     "apps/steam_stats",
+    "apps/game_sim",
 ]
