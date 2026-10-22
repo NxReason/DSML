@@ -226,3 +226,92 @@ def password_constraints():
         if '0' in password and '5' in password:
             success += 1
     print(success)
+
+# problem set
+
+
+def problem_set():
+    problem1()
+    problem2()
+    problem3()
+    problem4()
+    problem5()
+    problem6()
+    problem7()
+    problem8()
+
+
+# 1. an adventurer chooses 3 items from 8 distinct items to carry.
+# how many diff sets of items can they carry?
+def problem1():
+    print('P1:', combinations(8, 3))
+
+
+# 2. 5 different enemies must act in sequence.
+# how many possible turn orders are there?
+def problem2():
+    print('P2:', permutations(5, 5))
+
+
+# 3. a recipe requires 2 distinct herbs chosen from 7
+# 1 gem choosen from 5
+# how many different recipes are possible
+def problem3():
+    herb_comb = combinations(7, 2)
+    gem_comb = 5
+    print('P3:', herb_comb * gem_comb)
+
+
+# 4. choose a party of 4 from 11 chars, 3 of whom are healers
+# how many parties contain at least one healer?
+def problem4():
+    all_comb = combinations(11, 4)
+    no_healers = combinations(11 - 3, 4)
+    print('P4:', all_comb - no_healers)
+
+
+# 5. char equips 4 of 9 distinct abilities.
+# two specific abilities cannot be equipped together
+# how many valid loadouts?
+def problem5():
+    all_comb = combinations(9, 4)
+    invalid_comb = combinations(9 - 2, 2)
+    print('P5:', all_comb - invalid_comb)
+
+
+# 6. 5-digit code uses digits 0-9, repetition allowed, and leading zeros are allowed
+# how many codes contain at least one 2 and at least one 8?
+def problem6():
+    all_codes = 10 ** 5
+    no_2 = 9 ** 5
+    no_8 = 9 ** 5
+    neither = 8 ** 5
+    print('P6:', all_codes - no_2 - no_8 + neither)
+
+
+# 7. char attacks 8 times. each attack independently crits with prob 0.25
+# what is the probability of exactly 2 crits?
+def crit_count(chance, crits, total):
+    non_crits = total - crits
+    any_crit_seq = (chance ** crits) * ((1 - chance) ** non_crits)
+    combs = combinations(total, crits)
+    print(
+        f'Total: {total}, crits: {crits}, crit chance: {chance}, prob: {combs * any_crit_seq * 100:.3f}%')
+
+
+def problem7():
+    any_crit_seq = (0.25 ** 2) * (0.75 ** 6)
+    combs = combinations(8, 2)
+    print('P7:', any_crit_seq * combs)
+
+
+# 8. choose 5 characters from 4 tanks, 6 dd, 3 healers
+# how many parties with exactly 1 healer and at least 1 tank?
+def problem8():
+    healer_combs = 3
+
+    rest_all_combs = combinations(4 + 6, 4)
+    rest_no_tanks = combinations(6, 4)
+    rest_valid_combs = rest_all_combs - rest_no_tanks
+
+    print('P8:', healer_combs * rest_valid_combs)

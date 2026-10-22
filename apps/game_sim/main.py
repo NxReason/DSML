@@ -3,9 +3,7 @@ from combinatorics import *
 
 
 def main():
-    restricted_party()
-    restricted_ability_loadout()
-    password_constraints()
+    problem_set()
 
 
 if __name__ == "__main__":
