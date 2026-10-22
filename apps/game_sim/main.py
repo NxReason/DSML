@@ -1,14 +1,11 @@
 import nxmath
-from replacement import *
-
-
-import random
+from combinatorics import *
 
 
 def main():
-    sim_replacement()
-    least_one_rare()
-    unique_rewards()
+    restricted_party()
+    restricted_ability_loadout()
+    password_constraints()
 
 
 if __name__ == "__main__":
