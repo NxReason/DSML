@@ -1,9 +1,9 @@
 import nxmath
-from combinatorics import *
+from random_variable import *
 
 
 def main():
-    problem_set()
+    disc_uniform_run()
 
 
 if __name__ == "__main__":
