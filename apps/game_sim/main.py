@@ -3,7 +3,7 @@ from random_variable import *
 
 
 def main():
-    disc_uniform_run()
+    normal_dist_run()
 
 
 if __name__ == "__main__":

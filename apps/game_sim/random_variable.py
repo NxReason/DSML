@@ -1,3 +1,4 @@
+import statistics
 import random
 import math
 
@@ -51,6 +52,12 @@ class DRV:
             if rnd < total:
                 return key
         return 0
+
+    def get_total_prob(self) -> float:
+        total = 0.0
+        for prob in self.drv.values():
+            total += prob
+        return total
 
 
 def random_var_run():
@@ -294,3 +301,99 @@ def disc_uniform_run():
     print(dist.ev())
     print(dist.std())
     sim_disc_uniform(dist)
+
+
+# geometric
+def gen_geometric_drv(p, max_trials):
+    q = 1 - p
+    return DRV({i: q ** (i - 1) * p for i in range(1, max_trials + 1)})
+
+
+def sim_geom_dist(chance: float, dist: DRV):
+    trials = 100_000
+    dist_count = len(dist.drv)
+
+    sim_results = {}
+    success_count = 0
+    t = 0
+    for _ in range(trials):
+        t += 1
+
+        val = random.random()
+        if val > chance:
+            continue
+
+        success_count += 1
+        if t in sim_results:
+            sim_results[t] += 1
+        else:
+            sim_results[t] = 1
+        t = 0
+
+    # compare
+    for i in range(1, dist_count + 1):
+        print(
+            f'First success at: {i}, sim {sim_results[i] / success_count:.5f}, dist {dist.drv[i]:.5f}')
+
+    print(f'Mean: sim {trials / success_count}, dist {1 / chance}')
+
+
+def geom_dist_run():
+    geom_dist = gen_geometric_drv(0.2, 20)
+
+    total = 0.0
+    for i in range(1, 21):
+        total += geom_dist.drv[i]
+    print(total)  # 0.98847, turned in this part into get_total_prob() method
+
+    sim_geom_dist(0.2, geom_dist)
+
+
+# Poisson dist
+def gen_poisson_drv(lam, max_events):
+    return DRV({
+        i: (math.e ** (-lam) * lam ** i) / math.factorial(i)
+        for i in range(max_events + 1)
+    })
+
+
+def poisson_dist_run():
+    lam = 3
+    poisson_dist = gen_poisson_drv(lam, 15)
+    print(poisson_dist.get_total_prob())
+
+    poisson_dist = gen_poisson_drv(lam, 25)
+    print(poisson_dist.get_total_prob())
+
+    print(f'EV: drv {poisson_dist.ev()}, poisson {lam}')
+    print(f'Var: drv {poisson_dist.variance()}, poisson {lam}')
+    print(f'Std: drv {poisson_dist.std()}, poisson {math.sqrt(lam)}')
+
+
+# normal dist
+def in_range(values: list[float], lower: float, upper: float) -> float:
+    hits = 0
+    for val in values:
+        if lower <= val <= upper:
+            hits += 1
+    return hits / len(values)
+
+
+def normal_dist_run():
+    trials = 100_000
+    values = [random.gauss(50, 10) for _ in range(trials)]
+
+    print(f'Mean: {sum(values) / len(values)}')
+    print(f'Std: {std(values)}')
+
+    print(f'40-60: {in_range(values, 40, 60) * 100}%, expected: 68%')
+    print(f'30-70: {in_range(values, 30, 70) * 100}%, expected: 95%')
+    print(f'20-80: {in_range(values, 20, 80) * 100}%, expected: 99.7%')
+
+    below_60 = sum(1 for val in values if val <= 60.0)
+    print(f'<= 60: {below_60 / trials * 100}%, expected 84%')
+
+    values = sorted(values)
+    percentile = 0.95
+    index = (int)(percentile * trials)
+    print(f'95th percentile: {values[index]}, expected 66.45')
